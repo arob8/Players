@@ -15,6 +15,9 @@ using Players.Infrastructure.Calculations;
 using Players.Domain.Utilities.NameFormatter.Baseball;
 using Players.Domain.Utilities.NameFormatter.Basketball;
 using Players.Domain.Utilities.NameFormatter.Football;
+using Players.Application.Interfaces;
+using Players.Application.DataMapper;
+using Players.Application.Services;
 
 namespace Players.API
 {
@@ -78,11 +81,11 @@ namespace Players.API
             services.AddScoped<BasketballPlayerDataProcessor>();
 
             // Registering application services
-            //services.AddScoped<IPlayerDtoDataMapper, PlayerDTODataMapper>();
-            //services.AddScoped<IPlayerService, Application.Services.PlayerService>();
+            services.AddScoped<IPlayerDtoDataMapper, PlayerDtoDataMapper>();
+            services.AddScoped<IPlayerService, PlayerService>();
 
             // Registering background services
-            services.AddHostedService<PlayerDataBackgroundService>();
+            services.AddHostedService<PlayersBackgroundService>();
 
             services.AddControllers();
         }
@@ -107,11 +110,11 @@ namespace Players.API
                 endpoints.MapControllers();
             });
 
-            //using (var scope = app.ApplicationServices.CreateScope())
-            //{
-            //    var db = scope.ServiceProvider.GetRequiredService<PlayersContext>();
-            //    db.Database.Migrate();
-            //}
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<PlayersContext>();
+                db.Database.Migrate();
+            }
         }
     }
 }

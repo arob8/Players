@@ -9,13 +9,13 @@ using Players.Infrastructure.Processor;
 
 namespace Players.Infrastructure.Services
 {
-    public class PlayerDataBackgroundService : IHostedService, IDisposable
+    public class PlayersBackgroundService : IHostedService, IDisposable
     {
-        private readonly ILogger<PlayerDataBackgroundService> _logger;
+        private readonly ILogger<PlayersBackgroundService> _logger;
         private readonly IServiceScopeFactory _serviceScopeFactory;
         private Timer? _timer = null;
 
-        public PlayerDataBackgroundService(ILogger<PlayerDataBackgroundService> logger, IServiceScopeFactory serviceScopeFactory)
+        public PlayersBackgroundService(ILogger<PlayersBackgroundService> logger, IServiceScopeFactory serviceScopeFactory)
         {
             _logger = logger;
             _serviceScopeFactory = serviceScopeFactory;
