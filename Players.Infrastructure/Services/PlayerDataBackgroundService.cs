@@ -5,8 +5,7 @@ using Players.Domain.Enums;
 using Players.Infrastructure.DataProcessor.Baseball;
 using Players.Infrastructure.DataProcessor.Basketball;
 using Players.Infrastructure.DataProcessor.Football;
-using Players.Infrastructure.Interfaces;
-using Players.Infrastructure.Interfaces.DataProcessor;
+using Players.Infrastructure.Processor;
 
 namespace Players.Infrastructure.Services
 {
@@ -64,18 +63,18 @@ namespace Players.Infrastructure.Services
         {
             try
             {
-                IDataProcessor playerDataProcessor;
+                PlayerDataProcessor playerDataProcessor;
 
                 switch (sport)
                 {
                     case SportType.football:
-                        playerDataProcessor = serviceProvider.GetRequiredService<IFootballDataProcessor>();
+                        playerDataProcessor = serviceProvider.GetRequiredService<FootballPlayerDataProcessor>();
                         break;
                     case SportType.baseball:
-                        playerDataProcessor = serviceProvider.GetRequiredService<IBaseballDataProcessor>();
+                        playerDataProcessor = serviceProvider.GetRequiredService<BaseballPlayerDataProcessor>();
                         break;
                     case SportType.basketball:
-                        playerDataProcessor = serviceProvider.GetRequiredService<IBasketballDataProcessor>();
+                        playerDataProcessor = serviceProvider.GetRequiredService<BasketballPlayerDataProcessor>();
                         break;
                     default:
                         throw new ArgumentException("Invalid sport type.");

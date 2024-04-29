@@ -92,7 +92,7 @@ namespace Players.Infrastructure.Database.Repositories
             }
             catch (DbUpdateException ex)
             {
-                throw;
+                throw ex;
             }
             catch (Exception ex)
             {

@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Players.Domain.Entities
 {
-    public abstract class Player
+    public class Player
     {
         [Key]
         public string Id { get; set; }
 
-        public string NameBrief { get; set; }
+        public string? NameBrief { get; set; }
 
         public string? FirstName { get; set; }
 
@@ -22,9 +22,10 @@ namespace Players.Domain.Entities
 
         public SportType Sport { get; set; }
 
-        public Player(string id, string firstName, string lastName, string position, int? age, int? averagePositionAgeDiff, SportType sport)
+        public Player(string id, string? nameBrief, string? firstName, string lastName, string position, int? age, int? averagePositionAgeDiff, SportType sport)
         {
             Id = id;
+            NameBrief = nameBrief;
             FirstName = firstName;
             LastName = lastName;
             Position = position;

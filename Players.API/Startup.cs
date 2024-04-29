@@ -5,6 +5,16 @@ using Players.Domain.Interfaces;
 using Players.Infrastructure.Database.Repositories;
 using Players.Infrastructure.Database.Context;
 using Microsoft.EntityFrameworkCore;
+using Players.Infrastructure.Factory.Basketball;
+using Players.Infrastructure.Factory.Football;
+using Players.Infrastructure.Factory.Baseball;
+using Players.Infrastructure.DataProcessor.Football;
+using Players.Infrastructure.DataProcessor.Basketball;
+using Players.Infrastructure.DataProcessor.Baseball;
+using Players.Infrastructure.Calculations;
+using Players.Domain.Utilities.NameFormatter.Baseball;
+using Players.Domain.Utilities.NameFormatter.Basketball;
+using Players.Domain.Utilities.NameFormatter.Football;
 
 namespace Players.API
 {
@@ -52,9 +62,20 @@ namespace Players.API
             services.AddSingleton<HttpClient>();
             services.AddScoped<IClient, CbsSportsClient>();
 
+            // Registering Domain services
+            services.AddScoped<FootballPlayerNameFormatter>();
+            services.AddScoped<BaseballPlayerNameFormatter>();
+            services.AddScoped<BasketballPlayerNameFormatter>();
+
             // Registering infrastructure services
             services.AddScoped<IPlayerRepository, PlayerRepository>();
-            //services.AddScoped<IPlayerDataCalculator, PlayerDataCalculator>();
+            services.AddScoped<IPlayerDataCalculator, PlayerDataCalculator>();
+            services.AddScoped<FootballPlayerFactory>();
+            services.AddScoped<BaseballPlayerFactory>();
+            services.AddScoped<BasketballPlayerFactory>();
+            services.AddScoped<FootballPlayerDataProcessor>();
+            services.AddScoped<BaseballPlayerDataProcessor>();
+            services.AddScoped<BasketballPlayerDataProcessor>();
 
             // Registering application services
             //services.AddScoped<IPlayerDtoDataMapper, PlayerDTODataMapper>();
