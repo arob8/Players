@@ -3,15 +3,8 @@ using Players.Infrastructure.Interfaces;
 using Players.Infrastructure.CbsSports.Client;
 using Players.Domain.Interfaces;
 using Players.Infrastructure.Database.Repositories;
-using Players.Infrastructure.Factory.Basketball;
-using Players.Infrastructure.Factory.Football;
-using Players.Infrastructure.Factory.Baseball;
-using Players.Infrastructure.DataProcessor.Football;
-using Players.Infrastructure.DataProcessor.Basketball;
-using Players.Infrastructure.DataProcessor.Baseball;
 using Players.Infrastructure.Database.Context;
 using Microsoft.EntityFrameworkCore;
-using Players.Infrastructure.Factory;
 
 namespace Players.API
 {
@@ -62,15 +55,6 @@ namespace Players.API
             // Registering infrastructure services
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             //services.AddScoped<IPlayerDataCalculator, PlayerDataCalculator>();
-
-            // Factories with specific registrations
-            services.AddScoped<IPlayerFactory, FootballPlayerFactory>();
-            services.AddScoped<IPlayerFactory, BaseballPlayerFactory>();
-            services.AddScoped<IPlayerFactory, BasketballPlayerFactory>();
-
-            services.AddScoped<FootballDataProcessor>();
-            services.AddScoped<BaseballDataProcessor>();
-            services.AddScoped<BasketballDataProcessor>();
 
             // Registering application services
             //services.AddScoped<IPlayerDtoDataMapper, PlayerDTODataMapper>();
