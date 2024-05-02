@@ -80,7 +80,7 @@ The project follows the principles of Clean Architecture, emphasizing separation
 
 - **Domain Layer**: Contains the core business entities and logic, independent of external concerns. Includes entities like `Player` and specializations such as `FootballPlayer`, `BaseballPlayer`, and `BasketballPlayer`.
 
-- **Infrastructure Layer**: Deals with external concerns such as data access, external API communication, and database interaction. Includes components like `CbsSportsClient`, `PlayerRepository`, `PlayerContext`, `PlayerSeeder`, `PlayerFactory`, `PlayerDataCalculator`, `PlayerDataProcessor`, and `PlayerDataBackgroundService`.
+- **Infrastructure Layer**: Deals with external concerns such as data access, external API communication, and database interaction. Includes components like `CbsSportsClient`, `PlayerContext`, `PlayerRepository`, `PlayerSeeder`, `PlayerFactory`, `PlayerDataCalculator`, `PlayerDataProcessor`, and `PlayerDataBackgroundService`.
 
 ## PlayerService.API
 - **PlayerController**: Handles HTTP requests related to player operations.
