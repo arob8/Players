@@ -44,7 +44,7 @@ This section guides you through the necessary steps to get this project up and r
 ## Endpoints
 
 ### Get Player by ID
-- **URL**: `/player/{id}`
+- **URL**: `/players/{id}`
 - **Method**: `GET`
 - **Description**: Retrieves player information by ID.
   - **Parameters**:
@@ -55,7 +55,7 @@ This section guides you through the necessary steps to get this project up and r
     - `500 Internal Server Error`: If an unexpected error occurs.
 
 ### Search Players
-- **URL**: `/player/search`
+- **URL**: `/players/search`
 - **Method**: `GET`
 - **Description**: Searches for players based on specified criteria.
   - **Query Parameters**:
@@ -80,7 +80,7 @@ The project follows the principles of Clean Architecture, emphasizing separation
 
 - **Domain Layer**: Contains the core business entities and logic, independent of external concerns. Includes entities like `Player` and specializations such as `FootballPlayer`, `BaseballPlayer`, and `BasketballPlayer`.
 
-- **Infrastructure Layer**: Deals with external concerns such as data access, external API communication, and database interaction. Includes components like `CbsSportsClient`, `PlayerRepository`, `PlayerContext`, `PlayerDataProcessor`, and `PlayerDataBackgroundService`.
+- **Infrastructure Layer**: Deals with external concerns such as data access, external API communication, and database interaction. Includes components like `CbsSportsClient`, `PlayerRepository`, `PlayerContext`, `PlayerSeeder`, `PlayerFactory`, `PlayerDataCalculator`, `PlayerDataProcessor`, and `PlayerDataBackgroundService`.
 
 ## PlayerService.API
 - **PlayerController**: Handles HTTP requests related to player operations.
