@@ -1,4 +1,4 @@
-# Player Service
+# Players Service
 
 ## Description
 This project aims to integrate and persist player data from the CBS Sports API for three major sports: baseball, football, and basketball. It involves building a robust system capable of importing data periodically and updating existing records in the database to ensure the most up-to-date information is available.
@@ -96,6 +96,7 @@ The project follows the principles of Clean Architecture, emphasizing separation
 - **FootballPlayer**, **BaseballPlayer**, **BasketballPlayer**: Specializations of `Player` for specific sports.
 - **SportType**: An enumeration representing different types of sports.
 - **PlayerNotFoundException**: Represents an exception thrown when a player is not found.
+- **PlayerNameFormatter**:  Provides abstract methods for formatting player names. Subclasses implement specific formatting rules, such as abbreviating first names and fully displaying last names.
 
 ## PlayerService.Infrastructure
 - **CbsSportsClient** : Handles communications with the CBS Sports API to retrieve player data. 
@@ -103,7 +104,7 @@ The project follows the principles of Clean Architecture, emphasizing separation
 - **PlayerContext** : Acts as the database context within the Entity Framework. Manages entity relationships and database interactions for the players' data model.
 - **PlayerRepository** : Manages the persistence operations for player data, including saving updates and retrieving player entities from the database.
 - **PlayerSeeder** : Initializes the player database.
-- **PlayerDataMapper** : Maps raw player data (PlayerData) to entity objects (Player).
+- **PlayerFactory** Serves as an abstract base for creating player entities. This factory utilizes a naming formatter to construct player names and also manages the calculation of age differences by position. Subclasses must implement methods for individual player creation and bulk player creation from raw data.
 - **PlayerDataCalculator** : Responsible for computing statistical analyses such as average ages by position and position age difference.
-- **PlayerDataProcessor** Coordinates the processing of player data, including fetching from external APIs, calculating statistics, mapping to domain entities, and updating the database. It relies on services for data fetching, mapping, calculating, and repository operations to ensure data is current and accurate.
+- **PlayerDataProcessor** Coordinates the processing of player data, including fetching from external APIs, calculating statistics, mapping to domain entities, and updating the database. It relies on services for data fetching, mapping, calculating, and repository operations to ensure data is current and accurate. Subclasses must implement specific workflows for processing player data.
 - **PlayerDataBackgroundService**: Runs in the background to periodically fetch player data from external sources and update the database.
